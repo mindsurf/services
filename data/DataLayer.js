@@ -10,7 +10,7 @@ module.exports = function(mysql,request){
     sql.connect();
 
     //model
-    this.sessionModel = require('./model/sessionModel');
+    this.userModel = require('./model/userModel');
 
     //bussiness objects
     this.userBo = require('./bo/userBo')(sql,request);

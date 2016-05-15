@@ -13,30 +13,23 @@ module.exports = function(sql,request){
         user.id = undefined;
         user.email = undefined;
         user.authorname = undefined;
+        user.state = undefined;
     }
 
     /**
-     * @method register
-     * @param email
+     * @method activate
+     * @param id
      * @param authorname
      * @param success_callback(userModel)
      * @param err_callback(message)
      **/
-    this.register = function (email,authorname,success_callback,err_callback)
+    this.activate = function (id,authorname,success_callback,err_callback)
     {
         try
         {
-            userDao.selectUser(email, function(userObj)
+            userDao.activateUser(authorname, function(userObj)
             {
-                if(userObj)
-                    err_callback("Error: This user already exists");
-                else userDao.insertUser(email,authorname,function(userObj)
-                {
-                    if(userObj)
-                        success_callback(userObj);
-                    else
-                        err_callback("Error: Unexpected error");
-                });
+                success_callback(userObj);
             });
         }
         catch (e)
@@ -72,11 +65,10 @@ module.exports = function(sql,request){
                             if(userObj)
                                 success_callback(userObj);
                             else
+                            userDao.insertUser(body.email, function(userObj)
                             {
-                                var user = new userDao.userModel();
-                                user.email = body.email;
-                                success_callback(user);
-                            }
+                                success_callback(userObj);
+                            });
                         });
                     }
                     else

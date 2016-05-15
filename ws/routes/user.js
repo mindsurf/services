@@ -1,8 +1,8 @@
 module.exports = function(dataLayer,server){
     server.use(function (req, res, next)
     {
-        if(!req.session.mode)
-            req.session= new dataLayer.sessionModel(false,"visitor");
+        if(!req.session.state)
+            req.session= new dataLayer.userModel();
         next();
     });
 
@@ -13,7 +13,7 @@ module.exports = function(dataLayer,server){
     server.route('/user/register')
       .post(function(req, res)
       {
-        if(!req.session.user.email)
+        if(!req.session.email)
         {
             res.json({ success: false , message: "Error: Please authenticate" });
         }
@@ -38,21 +38,23 @@ module.exports = function(dataLayer,server){
         dataLayer.userBo.verify(req.body.assertion,
             function(userObj){
                 var redir= false;
-                if(userObj.id)
-                {
-                    if(!req.session.user.id || req.session.user.id!=userObj.id)
-                        redir= "/";
-                }
-                else
-                {
-                    if(!req.session.user.email || req.session.user.email!==userObj.email)
-                        redir= "/register";
-                }
 
-                req.session.user= userObj;
-                req.session.mode= userObj.id ? "user":"visitor";
+                if(!req.session.id || req.session.id!=userObj.id)
+                  switch(userObj.state)
+                  {
+                    case 'V':
+                      redir="/register";
+                    break;
 
-                res.json({ success: true , redir:redir , session:req.session });
+                    case 'U':
+                      redir="/";
+                    break;
+
+                    //default: resolve?
+                  }
+
+                req.session= userObj;
+                res.json({ success: true , redir:redir , session:userObj });
             },
             function(error_message){
                 res.json({ success: false , message: error_message });
