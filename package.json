@@ -1,0 +1,33 @@
+{
+  "name": "mindsurf-express",
+  "version": "0.0.1",
+  "description": "WebServices with Node.js Server / Express.js Framework",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mindsurf/express.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "services"
+  ],
+  "author": "rominavarela.mx@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mindsurf/express/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "client-sessions": "^0.7.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "express-persona": "^0.1.2",
+    "mysql": "^2.9.0",
+    "request": "^2.67.0",
+    "urlencoded-request-parser": "^1.0.1"
+  }
+}
