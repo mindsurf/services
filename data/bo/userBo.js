@@ -8,13 +8,13 @@ module.exports = function(sql,request){
      * @method reset
      * @param user
      **/
-    this.reset = function (user)
+    /*this.reset = function (user)
     {
         user.id = undefined;
         user.email = undefined;
         user.authorname = undefined;
         user.state = undefined;
-    }
+    }*/
 
     /**
      * @method activate

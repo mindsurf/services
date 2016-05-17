@@ -3,7 +3,7 @@ module.exports = function()
     this.id = undefined;
     this.email = undefined;
     this.authorname = undefined;
-    this.state = 'V';
+    this.state = undefined;
 
     return this;
 }

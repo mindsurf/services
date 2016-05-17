@@ -54,7 +54,7 @@ module.exports = function(dataLayer,server){
                   }
 
                 req.session= userObj;
-                res.json({ success: true , redir:redir , session:userObj });
+                res.json({ success: true , redir:redir , session:req.session });
             },
             function(error_message){
                 res.json({ success: false , message: error_message });
@@ -68,9 +68,8 @@ module.exports = function(dataLayer,server){
     server.route('/user/logout')
       .post(function(req, res)
       {
-        var redir= req.session.user.email ? "/overview" : false;
-        req.session.mode= "visitor";
-        dataLayer.userBo.reset(req.session.user);
+        var redir= req.session.email ? "/" : false;
+        req.session= new dataLayer.userModel();
         res.json({ success: true , redir:redir , session:req.session });
       });
 
