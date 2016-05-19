@@ -12,11 +12,11 @@ var DataLayer           = require('./data/DataLayer'),
 
 
 //global
-SERVICE_ROUTE        = "http://localhost";
+SERVICE_ROUTE        = "http://192.168.0.6"//"http://localhost";
 SERVICE_PORT         = 3001;
 SERVICE_AUDIENCE     = SERVICE_ROUTE + ":" + SERVICE_PORT;
 
-APP_ROUTE           = "http://localhost";
+APP_ROUTE           = "http://192.168.0.6"//"http://localhost";
 APP_PORT            = 80;
 APP_AUDIENCE        = APP_ROUTE + ":" + APP_PORT;
 
