@@ -8,4 +8,8 @@ Environment:
 
 Setup:
 
- * npm install
+ > npm install
+
+Run:
+
+ > node main.js
